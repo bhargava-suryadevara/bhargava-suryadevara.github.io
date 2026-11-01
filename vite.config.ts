@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import type { Plugin } from 'vite'
 import { readdir, readFile, unlink } from 'node:fs/promises'
 import { resolve, join } from 'node:path'
@@ -32,12 +32,8 @@ function excludeMacMetadata(): Plugin {
   }
 }
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '')
-  return {
-    // Relative output works at both a GitHub Pages repository path and domain root.
-    // Set VITE_BASE_PATH=/repository-name/ when the destination is finalized.
-    base: env.VITE_BASE_PATH || './',
+export default defineConfig({
+    // GitHub Pages user site: https://bhargava-suryadevara.github.io/
+    base: '/',
     plugins: [react(), tailwindcss(), excludeMacMetadata()],
-  }
 })

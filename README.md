@@ -50,8 +50,8 @@ Production preview normally runs at `http://127.0.0.1:4173/`. The build writes g
 
 ## Intended hosting: GitHub Pages
 
-The site is prepared for GitHub Pages but has not been published. Hash routes support direct links and browser refreshes without server rewrites.
+The site is deployed to https://bhargava-suryadevara.github.io/ using GitHub Actions. Hash routes support direct links and browser refreshes without server rewrites.
 
-Vite defaults to a relative base (`./`). An explicit repository path can be supplied through `VITE_BASE_PATH=/repository-name/`; use `/` for a root site. See `.env.example`. Public asset links use Vite's base path, including the résumé.
+Vite uses the root base path (`/`) for this GitHub Pages user site. Public asset links use Vite's base path, including the résumé. No environment variables are required.
 
-A deployment workflow and GitHub Pages configuration remain a separate, approved step. No automated deployment workflow is enabled in this project.
+`.github/workflows/deploy.yml` builds and deploys on pushes to `main` and supports manual runs. It uses Node.js 24 LTS, `npm ci`, and `npm run build`, then publishes only `dist/` through the official GitHub Pages actions.
