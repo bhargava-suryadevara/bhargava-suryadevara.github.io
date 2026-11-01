@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-primary: #243447;
+  --color-accent: #416C99;
+  --color-secondary: #526A81;
+  --color-muted: #64748B;
+  --color-tag: #E4EDF5;
+  --color-border: #DCE5EE;
+  --font-heading: 'Manrope Variable', sans-serif;
+  --font-sans: 'Inter Variable', sans-serif;
+}
+
+@layer base {
+  body { @apply m-0 bg-background font-sans text-primary antialiased; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  a, button { @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent; }
+  ::selection { @apply bg-tag text-primary; }
+}
+
+@layer components {
+  .site-container { @apply mx-auto w-full max-w-6xl px-6 sm:px-10; }
+  .nav-link { @apply rounded-sm py-2 text-secondary hover:text-accent; }
+  .nav-link[aria-current='page'] { @apply text-accent underline decoration-2 underline-offset-8; }
+  .skip-link { @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-4 focus:py-3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}
+
+@keyframes experience-dialog-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.experience-dialog[open] {
+  animation: experience-dialog-enter 150ms ease-out;
+}
+
+/* Shared spacing rhythm: compact on mobile, measured whitespace on desktop. */
+:root {
+  --layout-page-padding: 3rem;
+  --layout-section-gap: 2rem;
+  --layout-heading-space: 1.5rem;
+  --layout-content-gap: 1.5rem;
+  --layout-grid-gap: 1.5rem;
+  --layout-experience-padding: 2rem;
+  --layout-footer-padding: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --layout-page-padding: 4.5rem;
+    --layout-section-gap: 3rem;
+    --layout-heading-space: 1.75rem;
+    --layout-content-gap: 2rem;
+    --layout-experience-padding: 2.25rem;
+    --layout-footer-padding: 1.75rem;
+  }
+}
+
+@layer components {
+  .page-spacing { padding-block: var(--layout-page-padding); }
+  .section-spacing {
+    margin-top: var(--layout-section-gap);
+    padding-top: var(--layout-heading-space);
+  }
+  /* Featured Projects reuses the Experience list's final divider above it. */
+  .section-heading-offset { padding-top: var(--layout-heading-space); }
+  .section-heading-spacing { padding-bottom: var(--layout-heading-space); }
+  .content-spacing { margin-top: var(--layout-content-gap); }
+  .card-grid-spacing { gap: var(--layout-grid-gap); }
+  .experience-row-spacing { padding-block: var(--layout-experience-padding); }
+  .footer-spacing { padding-block: var(--layout-footer-padding); }
+}

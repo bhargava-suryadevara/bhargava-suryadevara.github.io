@@ -1,0 +1,18 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Local planning and content source material
+/prompts/
+/specifications/
+/provenance/
+/CONTENT-GAPS.md
+
+# Additional macOS metadata
+._*
+.AppleDouble/
+.LSOverride
